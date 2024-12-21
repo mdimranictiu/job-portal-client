@@ -3,9 +3,14 @@ import Lottie from "lottie-react";
 import { useContext } from "react";
 import loginAnimation from "../../src/assets/login.json";
 import AuthContext from "../context/AuthContext/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const { signInUser,signInwithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || '/';
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,8 +20,16 @@ const Login = () => {
     console.log(loginData)
     signInUser(email,password)
     .then(result=>{
-        console.log(result.user)
+        console.log(result.user.email)
+        const user={email: email}
+        axios.post('http://localhost:5000/jwt',user,{
+          withCredentials:true
+        })
+        .then(res=>{
+          console.log(res.data)
+        })
         console.log(`Sign up successfully`)
+        navigate(from)
     })
     .catch(error=>{
         console.log('Error',error)
@@ -25,8 +38,10 @@ const Login = () => {
   const GoogleSinIn=()=>{
     signInwithGoogle()
       .then((result) => {
-        console.log(result.user);
+        console.log(result.user.email);
+        const user={email: email}
         alert("Successfully Login with Google!");
+        navigate(from)
       })
       .catch((error) => {
         console.error("Google Sign-In Error:", error.message);

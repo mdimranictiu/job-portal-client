@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="text-white pt-16 pb-5">
+    <div className="pt-16 pb-5">
       <div className="grid grid-cols-6 gap-10 px-5 max-md:grid-cols-2 max-sm:grid-cols-1">
         {/* Company Info Section */}
         <div className="flex flex-col gap-3">
@@ -154,15 +154,15 @@ const Footer = () => {
         <div className="flex flex-col gap-3">
           <h2 className="text-2xl font-bold">Newsletter</h2>
           <p>Submit your email to get the latest news from us.</p>
-          <form className="flex max-w-md">
+          <form className="flex flex-col gap-2 max-w-md">
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2 border border-gray-300  focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition duration-300"
+              className="bg-blue-500 w-full text-white px-4 py-2  hover:bg-blue-600 transition duration-300"
             >
               Subscribe
             </button>
